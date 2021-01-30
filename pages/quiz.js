@@ -7,11 +7,83 @@ import QuizContainer from '../src/components/QuizContainer';
 import Button from '../src/components/Button';
 import Footer from '../src/components/Footer';
 import base from '../base.json';
+import AlternativesForm from '../src/components/AlternativesForm';
 
 
+function Results({results}){
 
-function QuestionWidget({question , totalQuestions, questionIndex, onSubmit}){
-    const questionId = `question____${questionIndex}`
+  return(
+    <Widget>
+      <Widget.Header>
+        OLA
+      </Widget.Header>
+      <Widget.Content>
+        <p>Você Acertou {results.reduce((somatoriaAtual, resultadoAtual)=>{
+         
+          if(resultadoAtual === true){
+            return somatoriaAtual + 1;
+          }
+          return somatoriaAtual
+        }, 0)}</p>
+        <ul>
+          {results.map((result, key)=>(
+           <li key={key}>
+             {key+1} Resultado: {result === true ? 'Acertou' : 'Errou'}
+           </li>        
+         ))}
+        </ul>
+      </Widget.Content>
+    </Widget>
+  )
+  
+}
+
+export default function QuizPage(){
+  const totalQuestions = base.questions.length; 
+  const [screenState, setScreenState] = useState(screenStates.LOADING)
+  const [questionIndex, setQuestionIndex] = useState(0);
+  const [results, setResults]= useState([])
+  const question = base.questions[questionIndex];
+
+  function ADDresult(result){
+    setResults([
+      ...results,
+      result
+    ])
+  }
+
+function handleSubmit(){
+  const nextQuestion = questionIndex + 1;
+  if(nextQuestion < totalQuestions){
+    setQuestionIndex(questionIndex + 1)
+  }
+  else{
+    setScreenState(screenStates.END)
+  }
+
+}
+  
+  useEffect(()=>{
+    setTimeout(() => {
+      setScreenState(screenStates.QUIZ)
+    }, 2 * 1000);
+  }, [])
+  return(
+  <QuizBackground backgroundImage={base.bg}>
+    <QuizContainer>
+      <QuizLogo />
+      {screenState === screenStates.QUIZ && <QuestionWidget question={question} ADDresult={ADDresult} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
+      {screenState === screenStates.END && <Results results={results}/>}
+    </QuizContainer>
+  </QuizBackground>
+  )
+}
+
+function QuestionWidget({question , totalQuestions, questionIndex, onSubmit, ADDresult}){
+    const questionId = `question____${questionIndex}`;
+    const [selectedAlternative, setSelectedAlternative] = useState(undefined);
+    const [isFormSubmit, setIsFromSubmit] = useState(false);
+    const isCorret = selectedAlternative === question.answer;
     return(
       <Widget>
          <Widget.Header>
@@ -24,24 +96,37 @@ function QuestionWidget({question , totalQuestions, questionIndex, onSubmit}){
               }} />
           <Widget.Content>
             <p>{question.title}</p>
-            <form onSubmit={(e) => {
+            <AlternativesForm onSubmit={(e) => {
               e.preventDefault()
-              onSubmit();
+              setIsFromSubmit(true);
+              setTimeout(() => {
+                ADDresult(isCorret);
+                onSubmit();
+                setSelectedAlternative(undefined);
+                setIsFromSubmit(false);
+              }, 2 * 1000);
+              
+              
             }}>
             <h1>{question.description}</h1>
             {question.alternatives.map((alternative, alternativeId)=>{
+                const alternativeStatus = isCorret ? 'SUCCESS' : 'ERROR';
+                const isSelected = selectedAlternative === alternativeId ;
                 return(
-                    <Widget.Topic as="label" htmlFor={alternativeId}>
+                    <Widget.Topic data-selected={isSelected} data-status={isFormSubmit && alternativeStatus} as="label" htmlFor={alternativeId} key={alternativeId}>
                         
                         {alternative}
-                        <input type="radio" name={questionId} id={alternativeId} style={{
-                                   
+                        <input type="radio"  name={questionId} id={alternativeId} onChange={()=>{setSelectedAlternative(alternativeId)}} style={{
+                          display:'none'      
                         }}/>
+                       
                     </Widget.Topic>
                 );
             })}
-            <Button type="submit">Confirmar</Button>
-            </form>
+            <Button type="submit" disabled={selectedAlternative === undefined}>Confirmar</Button>
+            {isFormSubmit && isCorret && <p>Acertou!</p>}
+            {isFormSubmit && !isCorret && <p>Errou!</p>}
+            </AlternativesForm>
           </Widget.Content>
         </Widget>       
     );
@@ -53,39 +138,3 @@ const screenStates = {
       END: 'END'
 
     } 
-
-export default function QuizPage(){
-    const totalQuestions = base.questions.length; 
-    const [screenState, setScreenState] = useState(screenStates.LOADING)
-    const [questionIndex, setQuestionIndex] = useState(0);
-    const question = base.questions[questionIndex];
-    
-
-function handleSubmit(){
-    const nextQuestion = questionIndex + 1;
-    if(nextQuestion < totalQuestions){
-      setQuestionIndex(questionIndex + 1)
-    }
-    else{
-      setScreenState(screenStates.END)
-    }
-    
-
-}
-    
-    useEffect(()=>{
-      setTimeout(() => {
-        setScreenState(screenStates.QUIZ)
-      }, 2 * 1000);
-    }, [])
-    return(
-    <QuizBackground backgroundImage={base.bg}>
-      <QuizContainer>
-        <QuizLogo />
-        {screenState === screenStates.QUIZ && <QuestionWidget question={question} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
-        {screenState === screenStates.LOADING && <Loading loadingGif={base.loading}/>}
-        {screenState === screenStates.END && <div>PARABENS</div>}
-      </QuizContainer>
-    </QuizBackground>
-    )
-}
