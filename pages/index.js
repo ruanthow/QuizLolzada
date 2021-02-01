@@ -10,6 +10,8 @@ import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import {useRouter} from 'next/router';
 import Loading from '../src/components/Loading';
+import Link from '../src/components/Link';
+import {} from 'framer-motion';
 
 
 export default function Home() {
@@ -20,14 +22,13 @@ export default function Home() {
   useEffect(()=>{
     setInterval(() => {
         setWindow('QUIZ')
-      }, 3 * 1000);
+      }, 2 * 1000);
   },[])
   
 
   return (
     <>
-    {windowState === 'LOADING'&&
-    <Loading loadingGif={base.loading}/>}
+    
     {windowState === 'QUIZ'&& <QuizBackground backgroundImage={base.bg}>
       <QuizContainer>
         <QuizLogo />
@@ -56,14 +57,31 @@ export default function Home() {
 
         <Widget>
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
-            <p>lorem ipsum dolor sit amet...</p>
+            <h2>Quiz da Galera</h2>
+            <ul>
+              {base.external.map((quizAmigos, key)=>{
+                const [projectName,  githubUser] = quizAmigos
+                .replace('.vercel.app','')
+                .replace('https://','')
+                .split('.')
+             return (
+               <li key={key}>
+                 <Widget.Topic as={Link} href={`quiz/${projectName}___${githubUser}`} style={{fontSize:'15px'}}>{
+                   `${githubUser}/${projectName}`
+                 }</Widget.Topic>
+               </li>
+               
+             )
+            })}
+            </ul>
+            
           </Widget.Content>
         </Widget>
         <Footer />
       </QuizContainer>
       <GitHubCorner projectUrl="https://github.com/ruanthow" />
     </QuizBackground>}
+    {windowState === 'LOADING'&& <Loading loadingGif={base.loading}/>}
     </>
   );
 }

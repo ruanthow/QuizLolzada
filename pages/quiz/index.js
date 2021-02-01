@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import Widget from '../src/components/Widget';
-import QuizLogo from '../src/components/QuizLogo';
-import QuizBackground from '../src/components/QuizBackground';
-import Loading from '../src/components/Loading';
-import QuizContainer from '../src/components/QuizContainer';
-import Button from '../src/components/Button';
-import Footer from '../src/components/Footer';
-import base from '../base.json';
-import AlternativesForm from '../src/components/AlternativesForm';
+import Widget from '../../src/components/Widget';
+import QuizLogo from '../../src/components/QuizLogo';
+import QuizBackground from '../../src/components/QuizBackground';
+import Loading from '../../src/components/Loading';
+import QuizContainer from '../../src/components/QuizContainer';
+import Button from '../../src/components/Button';
+import Footer from '../../src/components/Footer';
+import base from '../../base.json';
+import AlternativesForm from '../../src/components/AlternativesForm';
 
 
 function Results({results}){

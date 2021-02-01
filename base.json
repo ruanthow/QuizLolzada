@@ -1,34 +1,142 @@
 {
-    "bg": "https://wallpaperaccess.com/full/217099.png",
+    "bg": "https://cdnb.artstation.com/p/assets/images/images/013/820/573/large/mo-yan-final-all-final-x3-cup-b-1.jpg?1541226483",
     "loading":"http://static.demilked.com/wp-content/uploads/2016/06/gif-animations-replace-loading-screen-14.gif",
     "title": "Legue of Legends",
     "description": "Teste os seus conhecimentos sobre esse jogo perfeito!",
     "questions": [
       {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Como fazer um seletor por id via CSS?",
+        "image": "https://i2.wp.com/i.pinimg.com/originals/0b/15/bf/0b15bf7be199584545c20c2a4bbf7dcf.png",
+        "title": "Quais dos personagens jogaveis foi capturado por Thresh ?",
         "description": "Essa é pra aquecer",
-        "answer": 2,
+        "answer": 3,
         "alternatives": [
-          ".elemento",
-          "*elemento",
-          "#elemento",
-          "%elemento"
+          "Braum",
+          "Garen",
+          "Kalista",
+          "Senna"
         ]
       },
       {
         "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-        "title": "Como fazer um background gradiente com css?",
-        "description": "Faz tempo em haha",
-        "answer": 0,
+        "title": "Quais dessas personagens é 'A Exilada' ?",
+        "description": ":D",
+        "answer": 2,
         "alternatives": [
-           "background: linear-gradient(#e66465, #9198e5);",
-           "background: gradient(#e66465, #9198e5);"
+           "Katarina",
+           "Morgana",
+           "Riven",
+           "Fiora"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Qual personagem do Vazio aplicava 'Silence' em sua abilidade 'Q' ?",
+        "description": ":D",
+        "answer": 1,
+        "alternatives": [
+           "Kha'Zix",
+           "Kassadin",
+           "Vel'Koz",
+           "Kai'Sa"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Quem é o grande General Noxiano ?",
+        "description": ":D",
+        "answer": 3,
+        "alternatives": [
+           "Darius",
+           "Draven",
+           "Rumble",
+           "Swain"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Quem desses personagens morreu em 2015 e ficou indisponivel por alguns dias depois retornou ?",
+        "description": ":D",
+        "answer": 2,
+        "alternatives": [
+           "Garen",
+           "Sylas",
+           "Gangplank",
+           "Udyr"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Qual o Maior(tamanho) campeão de Legue of Legends ?",
+        "description": ":D",
+        "answer": 3,
+        "alternatives": [
+           "Malphite",
+           "Morgana",
+           "Cho'Gath",
+           "Aurelion Sol"
+
+        ]
+      },
+      {
+        "image": "",
+        "title": "Quais são os integrantes que participam da banda True Damage ?",
+        "description": ":D",
+        "answer": 1,
+        "alternatives": [
+           "Qiyana, Kai'Sai, Ahri, Ekko e Yasuo",
+           "Qiyana, Senna, Akali, Ekko e Yasuo",
+           "Qiyana, Kai'Sai, Akali, Ekko e Yasuo",
+           "Qiyana, Senna, Akali, Ekko e Yone"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Para quem o Emicida da sua voz em uma skin Temática ?",
+        "description": ":D",
+        "answer": 2,
+        "alternatives": [
+           "Lucian",
+           "Garen",
+           "Ekko",
+           "Dr.Mundo"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Quais desses personagens tem o nome de 'Paranoid' em pt-br 'Paranoia' na Ultimate",
+        "description": "Black Sabbath",
+        "answer": 3,
+        "alternatives": [
+           "Kled",
+           "Singed",
+           "Veigar",
+           "Nocturne"
+
+        ]
+      },
+      {
+        "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
+        "title": "Em Quantos minutos de jogo nasce o Barão Na'Shor ?",
+        "description": "Sou Main Jg -q",
+        "answer": 2,
+        "alternatives": [
+           "0:17:35",
+           "0:21:00",
+           "0:20:00",
+           "0:19:00"
+
         ]
       }
     ],
     "external": [
-      ""
+      "https://animesquiz.ricardomalan.vercel.app/",
+      "https://aluraquiz.olliveer.vercel.app"
     ],
     "theme": {
       "colors": {
