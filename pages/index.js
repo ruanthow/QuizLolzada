@@ -45,7 +45,8 @@ export default function Home() {
             }}>
               <Input placeholder="Digite seu Nome" onChange={function(event){
                   setName(event.target.value)
-              }} pattern="[A-Za-z]{4,32}" />
+              }} pattern="[A-Za-z]{4,32}" title="No minimo 4 Caracteres sem símbolos"/>
+              
               <Button type="submit" disabled={name === '' ? true : false}>
                 Jogar
               </Button>

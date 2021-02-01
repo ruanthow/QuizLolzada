@@ -8,6 +8,7 @@ import Button from '../../src/components/Button';
 import Footer from '../../src/components/Footer';
 import base from '../../base.json';
 import AlternativesForm from '../../src/components/AlternativesForm';
+import BackLinkArrow from '../../src/components/BackArrow'
 
 
 function Results({results}){
@@ -15,20 +16,25 @@ function Results({results}){
   return(
     <Widget>
       <Widget.Header>
-        OLA
+        <h1>Parabéns Invocador</h1>
       </Widget.Header>
       <Widget.Content>
-        <p>Você Acertou {results.reduce((somatoriaAtual, resultadoAtual)=>{
+        <img  src={base.img_end} style={{
+         backgroundPosition:'center',
+         backgroundSize:'cover',
+         height:'210px'
+       }}/>
+        <h2>Você Acertou {results.reduce((somatoriaAtual, resultadoAtual)=>{
          
           if(resultadoAtual === true){
             return somatoriaAtual + 1;
           }
           return somatoriaAtual
-        }, 0)}</p>
+        }, 0)}</h2>
         <ul>
           {results.map((result, key)=>(
            <li key={key}>
-             {key+1} Resultado: {result === true ? 'Acertou' : 'Errou'}
+             {key+1 < 10 ? `0${key + 1}` : key + 1} Resultado: {result === true ? 'Acertou' : 'Errou'}
            </li>        
          ))}
         </ul>
@@ -40,7 +46,7 @@ function Results({results}){
 
 export default function QuizPage(){
   const totalQuestions = base.questions.length; 
-  const [screenState, setScreenState] = useState(screenStates.LOADING)
+  const [screenState, setScreenState] = useState(screenStates.QUIZ)
   const [questionIndex, setQuestionIndex] = useState(0);
   const [results, setResults]= useState([])
   const question = base.questions[questionIndex];
@@ -87,6 +93,7 @@ function QuestionWidget({question , totalQuestions, questionIndex, onSubmit, ADD
     return(
       <Widget>
          <Widget.Header>
+          <BackLinkArrow href="/"/>
             <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
           </Widget.Header>
           <img src={question.image} style={{
@@ -95,7 +102,7 @@ function QuestionWidget({question , totalQuestions, questionIndex, onSubmit, ADD
               objectFit: 'cover'
               }} />
           <Widget.Content>
-            <p>{question.title}</p>
+            <h3>{question.title}</h3>
             <AlternativesForm onSubmit={(e) => {
               e.preventDefault()
               setIsFromSubmit(true);
@@ -108,7 +115,7 @@ function QuestionWidget({question , totalQuestions, questionIndex, onSubmit, ADD
               
               
             }}>
-            <h1>{question.description}</h1>
+            <p>{question.description}</p>
             {question.alternatives.map((alternative, alternativeId)=>{
                 const alternativeStatus = isCorret ? 'SUCCESS' : 'ERROR';
                 const isSelected = selectedAlternative === alternativeId ;
