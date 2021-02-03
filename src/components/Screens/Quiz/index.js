@@ -17,7 +17,8 @@ function Results({results}){
   return(
     <Widget>
       <Widget.Header>
-        OLA
+       <BackLinkArrow  href="/"/>
+       <h1>Parabéns</h1>
       </Widget.Header>
       <Widget.Content>
         <p>Você Acertou {results.reduce((somatoriaAtual, resultadoAtual)=>{
@@ -41,12 +42,11 @@ function Results({results}){
 }
 
 export default function QuizPage({dbExterno,bg}){
-  const totalQuestions = dbExterno.length; 
+  const totalQuestions = dbExterno.questions.length; 
   const [screenState, setScreenState] = useState(screenStates.LOADING)
   const [questionIndex, setQuestionIndex] = useState(0);
   const [results, setResults]= useState([])
-  const question = dbExterno[questionIndex];
-
+  const question = dbExterno.questions[questionIndex];
   function ADDresult(result){
     setResults([
       ...results,
@@ -74,8 +74,10 @@ function handleSubmit(){
   <QuizBackground backgroundImage={bg}>
     <QuizContainer>
       <QuizLogo />
-      {screenState === screenStates.QUIZ && <QuestionWidget question={question} ADDresult={ADDresult} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
-      {screenState === screenStates.END && <Results results={results}/>}
+      {screenState === screenStates.QUIZ && 
+      <QuestionWidget question={question} ADDresult={ADDresult} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
+      {screenState === screenStates.END && 
+      <Results results={results}/>}
     </QuizContainer>
   </QuizBackground>
   )

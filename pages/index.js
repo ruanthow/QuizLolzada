@@ -11,7 +11,7 @@ import Button from '../src/components/Button';
 import {useRouter} from 'next/router';
 import Loading from '../src/components/Loading';
 import Link from '../src/components/Link';
-import {} from 'framer-motion';
+
 
 
 export default function Home() {

@@ -16,6 +16,7 @@ function Results({results}){
   return(
     <Widget>
       <Widget.Header>
+        <BackLinkArrow href="/" />
         <h1>Parabéns Invocador</h1>
       </Widget.Header>
       <Widget.Content>
@@ -78,8 +79,10 @@ function handleSubmit(){
   <QuizBackground backgroundImage={base.bg}>
     <QuizContainer>
       <QuizLogo />
-      {screenState === screenStates.QUIZ && <QuestionWidget question={question} ADDresult={ADDresult} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
-      {screenState === screenStates.END && <Results results={results}/>}
+      {screenState === screenStates.QUIZ && 
+      <QuestionWidget question={question} ADDresult={ADDresult} totalQuestions={totalQuestions} questionIndex={questionIndex} onSubmit={handleSubmit}/>}
+      {screenState === screenStates.END && 
+      <Results results={results}/>}
     </QuizContainer>
   </QuizBackground>
   )

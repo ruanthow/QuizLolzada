@@ -3,14 +3,13 @@ import QuizScreen from '../../src/components/Screens/Quiz'
 import {ThemeProvider} from 'styled-components'
 
 
-export default function QuizDaGalera({dbExterno, bg}){
+
+
+export default function QuizDaGalera({dbExterno}){
+  
     return(
       <ThemeProvider theme={dbExterno.theme}>
-          <QuizScreen dbExterno={dbExterno.questions} bg={dbExterno.bg}>
-              FALA ARROMBADO
-              <prev style={{color:'black'}}>
-                {JSON.stringify(dbExterno.questions, null , 1)}
-              </prev>
+          <QuizScreen dbExterno={dbExterno} bg={dbExterno.bg}>
           </QuizScreen>
       </ThemeProvider>
         
@@ -18,7 +17,7 @@ export default function QuizDaGalera({dbExterno, bg}){
 }
 
 export async function getServerSideProps(context) {
-  try {
+  
     const [projectName, githubUser] = context.query.id.split('___')
     const dbExterno = await fetch(`https://${projectName}.${githubUser}.vercel.app/api/db`)
     .then((res)=>{
@@ -27,17 +26,12 @@ export async function getServerSideProps(context) {
     .then((resJson)=>{
        return resJson;
     })
-    .catch((err)=>{
-       console.log(err)
+    .catch((e)=>{
+      return e;
     })
-    console.log(dbExterno);
     return { 
       props: {
         dbExterno,
         }
-      }
-  } catch (error) {
-    throw new Error(error)
   }
-
-  }
+}

@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
 
 const { theme } = base;
 
-export default function App({ Component, ...pageProps }) {
+export default function App({ Component, pageProps }) {
   return (
     <>
       <Head>
